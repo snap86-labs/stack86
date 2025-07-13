@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev:webapi" : "pnpm --filter webapi dev",
     "dev:webapp":"pnpm --filter webapp dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
