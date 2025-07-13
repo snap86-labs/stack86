@@ -5,7 +5,7 @@
   "compatibility_date": "2025-07-13",
   "assets": {
     "directory": "./.dist",
-    "binding": "REACT_DIST"
+    "binding": "REACT_DIST",
   },
   "d1_databases": [
     {
