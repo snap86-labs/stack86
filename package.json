@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:webapi" : "pnpm --filter webapi dev",
-    "dev:webapp":"pnpm --filter webapp dev",
+    "webapi:dev" : "pnpm --filter webapi dev",
+    "webapp:dev":"pnpm --filter webapp dev",
+    "db:generate" : "cd ./apps/webapi && pnpx @better-auth/cli@latest generate --config ./src/lib/auth-generate.ts --output ./src/lib/auth-schema.ts && npx drizzle-kit generate",
+    "db:migrate:local" : "cd ./apps/webapi && wrangler d1 migrations apply uprompt-mono-db",
+    "db:migrate:remote" : "cd ./apps/webapi && wrangler d1 migrations apply uprompt-mono-db --remote",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
