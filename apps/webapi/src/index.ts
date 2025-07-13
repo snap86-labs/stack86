@@ -1,8 +1,7 @@
 import { Hono } from 'hono'
 import { auth } from './lib/auth'
 import { cors } from "hono/cors";
-import { betterAuth } from 'better-auth';
-import { proxy } from 'hono/proxy';
+import { betterAuth } from 'better-auth'
 
 type AuthInstance = ReturnType<typeof betterAuth>;
 
@@ -49,7 +48,7 @@ app.use(
 	"/api/auth/*", // or replace with "*" to enable cors for all routes
 	(c, next) => {
 		const corsMiddleware = cors({
-			origin: "*",
+			origin: c.env.VITE_URL,
 			allowHeaders: ["Content-Type", "Authorization"],
 			allowMethods: ["POST", "GET", "OPTIONS"],
 			exposeHeaders: ["Content-Length"],

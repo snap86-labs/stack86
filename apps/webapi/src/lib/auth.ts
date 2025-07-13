@@ -1,8 +1,8 @@
 import { drizzle } from 'drizzle-orm/d1';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { betterAuth } from 'better-auth';
-import { openAPI } from 'better-auth/plugins';
 import * as schema from './auth-schema';
+import { oneTap } from 'better-auth/plugins';
 
 export const auth = (env: CloudflareBindings): ReturnType<typeof betterAuth> => {
   const db = drizzle(env.DB);
@@ -12,7 +12,7 @@ export const auth = (env: CloudflareBindings): ReturnType<typeof betterAuth> => 
       provider: 'sqlite',
       schema: schema
     }),
-    baseURL: env.BETTER_AUTH_URL,
+    baseURL: env.WORKER_URL,
     secret: env.BETTER_AUTH_SECRET,
     socialProviders: {
       google: {
@@ -20,11 +20,11 @@ export const auth = (env: CloudflareBindings): ReturnType<typeof betterAuth> => 
         clientSecret: env.GOOGLE_CLIENT_SECRET,
       },
     },
-    plugins : [
-      openAPI()
-    ],
     trustedOrigins : [
-      "http://localhost:5173"
+      env.VITE_URL,
+    ],
+    plugins: [
+      oneTap()
     ]
   });
 };

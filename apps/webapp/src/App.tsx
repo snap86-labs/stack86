@@ -1,6 +1,7 @@
 import './App.css'
 import { Button } from '@uprompt/ui/components/button'
 import { authClient } from './lib/auth-client'
+import { useEffect } from 'react'
 
 function App() {
   const handleGoogleLogin = () => {
@@ -9,6 +10,13 @@ function App() {
       callbackURL : window.location.href
     })
   }
+
+  useEffect(() => {
+    const runOneTap = async () => {
+      await authClient.oneTap()
+    }
+    runOneTap()
+  }, [])
 
   return (
     <Button 
