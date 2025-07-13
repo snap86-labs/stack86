@@ -1,0 +1,1 @@
+export { default } from "@uprompt/ui/postcss.config";
