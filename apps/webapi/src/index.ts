@@ -2,6 +2,8 @@ import { Hono } from 'hono'
 import { auth } from './lib/auth'
 import { cors } from "hono/cors";
 import { betterAuth } from 'better-auth'
+import { drizzle } from 'drizzle-orm/d1';
+import { user } from './lib/schema';
 
 type AuthInstance = ReturnType<typeof betterAuth>;
 
@@ -27,17 +29,12 @@ app.use("*", async (c, next) => {
   	return next();
 });
 
-app.get("/session", (c) => {
-	const session = c.get("session")
-	const user = c.get("user")
-	
-	if(!user) return c.body("Unauthorized", 401);
- 
-  	return c.json({
-	  session,
-	  user
-	});
+app.get("/api/users", async (c) => {
+	const db = drizzle(c.env.DB);
+	const users = await db.select().from(user);
+	return c.json(users);
 });
+
 
 // Handle API routes first
 app.on(["POST", "GET"], "/api/*", (c) => {

@@ -12,7 +12,7 @@
     "db:generate": "cd ./apps/webapi && pnpx @better-auth/cli@latest generate --config ./src/lib/auth-generate.ts --output ./src/lib/auth-schema.ts && npx drizzle-kit generate",
     "db:migrate:local": "cd ./apps/webapi && wrangler d1 migrations apply uprompt-mono-db",
     "db:migrate:remote": "cd ./apps/webapi && wrangler d1 migrations apply uprompt-mono-db --remote",
-    "cf:screts:put" : "cd ./apps/webapi && wrangler secret bulk .dev.vars",
+    "cf:secret:put" : "cd ./apps/webapi && wrangler secret bulk .dev.vars",
     "cf:deploy": "pnpm --filter webapp build && cd ./apps/webapi && wrangler deploy --minify",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
