@@ -3,6 +3,10 @@
   "name": "webapi",
   "main": "src/index.ts",
   "compatibility_date": "2025-07-13",
+  "assets": {
+    "directory": "./.dist",
+    "binding": "REACT_DIST"
+  },
   "d1_databases": [
     {
       "binding": "DB",
@@ -10,5 +14,8 @@
       "database_id": "364f0a64-71e9-4635-9aeb-5dabde52d231",
       "migrations_dir": "drizzle/migrations"
     }
-  ]
+  ],
+  "observability": {
+    "enabled": true,
+  }
 }
