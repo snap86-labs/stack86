@@ -14,7 +14,7 @@
     "db:migrate:remote": "cd ./apps/webapi && wrangler d1 migrations apply uprompt-mono-db --remote",
     "cf:secret:put" : "cd ./apps/webapi && wrangler secret bulk .dev.vars",
     "cf:deploy": "pnpm --filter webapp build && cd ./apps/webapi && wrangler deploy --minify",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "storybook": "cd ./apps/storybook && pnpm storybook"
   },
   "keywords": [],
   "author": "",
