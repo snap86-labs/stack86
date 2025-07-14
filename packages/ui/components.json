@@ -11,7 +11,7 @@
   },
   "iconLibrary": "lucide",
   "aliases": {
-    "components": "@uprompt/ui/components",
+    "components": "@uprompt/ui/components/base",
     "utils": "@uprompt/ui/lib/utils",
     "hooks": "@uprompt/ui/hooks",
     "lib": "@uprompt/ui/lib",
