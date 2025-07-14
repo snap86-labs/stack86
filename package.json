@@ -15,8 +15,8 @@
     "cf:secret:put" : "cd ./apps/webapi && wrangler secret bulk .dev.vars",
     "cf:deploy": "pnpm --filter webapp build && cd ./apps/webapi && wrangler deploy --minify",
     "storybook": "cd ./apps/storybook && pnpm storybook",
-    "env:get": "cd ./apps/webapi && rm -f .dev.vars && wormhole receive && cd ../webapp && rm .env.dev && wormhole receive",
-    "env:send": "cd ./apps/webapi && wormhole send .dev.vars && cd ../webapp && wormhole send .env"
+    "env:get": "cd ./apps/webapi && rm -f .dev.vars && wormhole receive",
+    "env:send": "cd ./apps/webapi && wormhole send .dev.vars"
   },
   "keywords": [],
   "author": "",
