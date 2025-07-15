@@ -4,7 +4,7 @@
   "main": "src/index.ts",
   "compatibility_date": "2025-07-13",
   "assets": {
-    "directory": "./.dist",
+    "directory": "./dist",
     "binding": "REACT_DIST",
   },
   "d1_databases": [

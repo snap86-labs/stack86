@@ -3,6 +3,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import chalk from "chalk";
+import { parse, printParseErrorCode, ParseError } from "jsonc-parser";
 
 interface PackageType {
   srcDir: fs.PathLike;
@@ -63,8 +64,8 @@ class Package {
       if (entry.isDirectory()) {
         this.copyDir(srcPath, destPath);
       } else {
-        // Check if this is an env file and handle accordingly
         if (this.isEnvFile(entry.name)) {
+          // Copy env file as .example with blanked values
           const exampleDestPath = path.join(dest.toString(), entry.name + '.example');
           this.copyAndBlankEnvFile(srcPath, exampleDestPath);
         } else {
@@ -90,7 +91,6 @@ class Package {
         return line;
       }
 
-      // Extract key and blank the value
       const [key] = trimmed.split("=");
       return `${key}=`;
     });
@@ -100,31 +100,45 @@ class Package {
   }
 }
 
-function blankEnvValues(filePath: string, keysToBlank?: string[]) {
+/**
+ * Sanitize wrangler.jsonc by clearing all values inside d1_databases array objects.
+ * Keys remain intact; values become empty strings.
+ */
+function sanitizeWranglerJsonc(filePath: string) {
   if (!fs.existsSync(filePath)) {
-    console.warn(chalk.yellow(`⚠️  File not found: ${chalk.dim(filePath)}`));
+    console.warn(chalk.yellow(`⚠️  wrangler.jsonc not found at ${chalk.dim(filePath)}`));
     return;
   }
 
-  const lines = fs.readFileSync(filePath, "utf-8").split("\n");
+  try {
+    const raw = fs.readFileSync(filePath, "utf-8");
 
-  const updatedLines = lines.map(line => {
-    const trimmed = line.trim();
+    const errors: ParseError[] = [];
+    const data = parse(raw, errors, { allowTrailingComma: true, disallowComments: false });
 
-    if (!trimmed || trimmed.startsWith("#") || !trimmed.includes("=")) {
-      return line;
+    if (errors.length > 0) {
+      console.error(chalk.red(`❌ JSONC parse errors in ${chalk.dim(filePath)}:`));
+      errors.forEach(e => {
+        console.error(`  - Error code ${printParseErrorCode(e.error)} at offset ${e.offset}`);
+      });
+      return;
     }
 
-    const [key, ...rest] = trimmed.split("=");
-    if (key && keysToBlank && !keysToBlank.includes(key)) {
-      return line;
+    if (Array.isArray(data.d1_databases)) {
+      for (const dbEntry of data.d1_databases) {
+        for (const key of Object.keys(dbEntry)) {
+            if(dbEntry[key]!="drizzle/migrations"){
+                dbEntry[key] = "";
+            }
+        }
+      }
     }
 
-    return `${key}=`;
-  });
-
-  fs.writeFileSync(filePath, updatedLines.join("\n") + "\n");
-  console.log(chalk.magenta(`🧹 Blank values in: ${chalk.dim(filePath)}`));
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    console.log(chalk.magenta(`🧹 Sanitized d1_databases values in: ${chalk.dim(filePath)}`));
+  } catch (err) {
+    console.error(chalk.red(`❌ Failed to process wrangler.jsonc at ${chalk.dim(filePath)}: ${err}`));
+  }
 }
 
 const baseSrc = path.resolve(__dirname, "../../../");
@@ -165,7 +179,6 @@ for (const pkg of packages) {
 }
 
 console.log(chalk.bold.cyan("\n📄 Copying root-level files..."));
-// 📄 Copy root-level files
 const filesToCopy = [".gitignore", "package.json", "pnpm-workspace.yaml"];
 for (const filename of filesToCopy) {
   const srcPath = path.join(baseSrc, filename);
@@ -179,7 +192,10 @@ for (const filename of filesToCopy) {
   }
 }
 
-// Note: The env files are now handled automatically during the copy process
-// They will be renamed to .example and have their values blanked
-console.log(chalk.bold.green("\n🎉 Template generation complete with env files safely converted to .example files!"));
-console.log(chalk.dim("   Environment files have been automatically detected and converted to .example files with blanked values."));
+// After copying, sanitize wrangler.jsonc in webapi package
+const wranglerJsoncPath = path.join(baseDest, "apps/webapi", "wrangler.jsonc");
+sanitizeWranglerJsonc(wranglerJsoncPath);
+
+console.log(chalk.bold.green("\n🎉 Template generation complete!"));
+console.log(chalk.dim("   Env files converted to .example files with blanked values."));
+console.log(chalk.dim("   wrangler.jsonc d1_databases values sanitized.\n"));

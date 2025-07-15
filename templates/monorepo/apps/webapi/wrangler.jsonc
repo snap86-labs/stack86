@@ -4,18 +4,18 @@
   "main": "src/index.ts",
   "compatibility_date": "2025-07-13",
   "assets": {
-    "directory": "./.dist",
-    "binding": "REACT_DIST",
+    "directory": "./dist",
+    "binding": "REACT_DIST"
   },
   "d1_databases": [
     {
-      "binding": "DB",
-      "database_name": "stack86-mono-db",
-      "database_id": "364f0a64-71e9-4635-9aeb-5dabde52d231",
+      "binding": "",
+      "database_name": "",
+      "database_id": "",
       "migrations_dir": "drizzle/migrations"
     }
   ],
   "observability": {
-    "enabled": true,
+    "enabled": true
   }
 }
