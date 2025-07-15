@@ -10,7 +10,7 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "uprompt-mono-db",
+      "database_name": "stack86-mono-db",
       "database_id": "364f0a64-71e9-4635-9aeb-5dabde52d231",
       "migrations_dir": "drizzle/migrations"
     }

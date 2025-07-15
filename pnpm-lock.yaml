@@ -48,7 +48,7 @@ importers:
       '@types/react':
         specifier: ^19.1.8
         version: 19.1.8
-      '@uprompt/ui':
+      '@stack86/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       lucide-react:
@@ -134,7 +134,7 @@ importers:
       '@tanstack/react-router-devtools':
         specifier: ^1.127.3
         version: 1.127.3(@tanstack/react-router@1.127.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@tanstack/router-core@1.127.3)(csstype@3.1.3)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(solid-js@1.9.7)(tiny-invariant@1.3.3)
-      '@uprompt/ui':
+      '@stack86/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       better-auth:
@@ -192,6 +192,25 @@ importers:
       vite:
         specifier: ^7.0.4
         version: 7.0.4(@types/node@24.0.13)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.20.3)
+
+  packages/create-stack86:
+    dependencies:
+      '@clack/prompts':
+        specifier: ^0.7.0
+        version: 0.7.0
+      chalk:
+        specifier: ^5.3.0
+        version: 5.4.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.19.7
+        version: 20.19.7
+      tsx:
+        specifier: ^4.0.0
+        version: 4.20.3
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
 
   packages/generate-templates:
     dependencies:
@@ -516,6 +535,14 @@ packages:
 
   '@capsizecss/unpack@2.4.0':
     resolution: {integrity: sha512-GrSU71meACqcmIUxPYOJvGKF0yryjN/L1aCuE9DViCTJI7bfkjgYDPD1zbNDcINJwSSP6UaBZY9GAbYDO7re0Q==}
+
+  '@clack/core@0.3.5':
+    resolution: {integrity: sha512-5cfhQNH+1VQ2xLQlmzXMqUoiaH0lRBq9/CLW9lTyMbuKLC3+xEK01tHVvyut++mLOn5urSHmkm6I0Lg9MaJSTQ==}
+
+  '@clack/prompts@0.7.0':
+    resolution: {integrity: sha512-0MhX9/B4iL6Re04jPrttDm+BsP8y6mS7byuv0BvXgdXhbV5PdlsHt55dvNsuBCPZ7xq1oTAOOuotR9NFbQyMSA==}
+    bundledDependencies:
+      - is-unicode-supported
 
   '@cloudflare/kv-asset-handler@0.4.0':
     resolution: {integrity: sha512-+tv3z+SPp+gqTIcImN9o0hqE9xyfQjI1XD9pL6NuKjua9B1y7mNYv0S9cP+QEbA4ppVgGZEmKOvHX5G5Ei1CVA==}
@@ -5817,6 +5844,17 @@ snapshots:
       fontkit: 2.0.4
     transitivePeerDependencies:
       - encoding
+
+  '@clack/core@0.3.5':
+    dependencies:
+      picocolors: 1.1.1
+      sisteransi: 1.0.5
+
+  '@clack/prompts@0.7.0':
+    dependencies:
+      '@clack/core': 0.3.5
+      picocolors: 1.1.1
+      sisteransi: 1.0.5
 
   '@cloudflare/kv-asset-handler@0.4.0':
     dependencies:

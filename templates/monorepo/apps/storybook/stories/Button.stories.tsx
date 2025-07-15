@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '@uprompt/ui/components/base/button';
+import { Button } from '@stack86/ui/components/base/button';
 import { ChevronRightIcon, Import } from 'lucide-react';
 
 const meta: Meta<typeof Button> = {

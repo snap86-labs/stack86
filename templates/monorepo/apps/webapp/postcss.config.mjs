@@ -1,1 +1,1 @@
-export { default } from "@uprompt/ui/postcss.config";
+export { default } from "@stack86/ui/postcss.config";

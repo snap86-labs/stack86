@@ -1,5 +1,5 @@
 import '../stories/index.css';
-import '@uprompt/ui/globals.css'
+import '@stack86/ui/globals.css'
 
 /** @type { import('@storybook/react-vite').Preview } */
 const preview = {

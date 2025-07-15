@@ -1,0 +1,64 @@
+Create Stack86
+A CLI tool to quickly create Stack86 monorepo projects with customizable project names.
+
+Quick Start
+bash
+# Run directly with pnpm
+pnpm dlx create-stack86
+
+# Or with npm
+npx create-stack86
+What it does
+Prompts for project name - Uses beautiful clack prompts to ask for your project name
+Clones template - Downloads the latest Stack86 template from GitHub
+Copies files - Copies the monorepo template to your target directory
+Customizes content - Replaces all instances of "stack86" with your project name:
+stack86 → your-project-name
+Stack86 → YourProjectName (PascalCase)
+STACK86 → YOUR-PROJECT-NAME (UPPERCASE)
+Cleans up - Removes temporary files
+Features
+✨ Beautiful CLI with clack prompts and chalk colors
+🚀 Fast creation from GitHub template
+🔄 Smart replacement of project names in all file formats
+🧹 Automatic cleanup of temporary files
+📦 Zero configuration - just run and go!
+Project Structure
+After running the command, you'll get a complete monorepo with:
+
+your-project-name/
+├── apps/
+│   ├── webapp/        # Web application
+│   ├── webapi/        # API server
+│   ├── storybook/     # Component library docs
+│   └── docs/          # Documentation site
+├── packages/
+│   └── ui/            # Shared UI components
+├── .env.example files # Environment templates
+├── package.json       # Root package.json
+└── pnpm-workspace.yaml
+Development
+bash
+# Install dependencies
+pnpm install
+
+# Build the CLI
+pnpm build
+
+# Test locally
+pnpm dev
+
+# Publish to npm
+pnpm publish
+Configuration
+Update the templateRepo in src/index.ts to point to your GitHub repository:
+
+typescript
+private readonly templateRepo = "https://github.com/YOUR_USERNAME/YOUR_REPO.git";
+Requirements
+Node.js 18+
+Git (for cloning the template)
+pnpm (recommended) or npm
+License
+MIT
+

@@ -11,10 +11,10 @@
   },
   "iconLibrary": "lucide",
   "aliases": {
-    "components": "@uprompt/ui/components/base",
-    "utils": "@uprompt/ui/lib/utils",
-    "hooks": "@uprompt/ui/hooks",
-    "lib": "@uprompt/ui/lib",
-    "ui": "@uprompt/ui/components"
+    "components": "@stack86/ui/components/base",
+    "utils": "@stack86/ui/lib/utils",
+    "hooks": "@stack86/ui/hooks",
+    "lib": "@stack86/ui/lib",
+    "ui": "@stack86/ui/components"
   }
 }
