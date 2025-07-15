@@ -1,0 +1,21 @@
+{
+  "name": "generate-templates",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "start": "tsc && chmod +x ./dist/index.js && ./dist/index.js",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.11.0",
+  "devDependencies": {
+    "@types/node": "^24.0.13",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1"
+  }
+}

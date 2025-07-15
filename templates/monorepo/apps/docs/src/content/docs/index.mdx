@@ -1,0 +1,58 @@
+---
+title: Welcome to Starlight
+description: Get started building your docs site with Starlight.
+template: splash
+hero:
+  tagline: Congrats on setting up a new Starlight project!
+  image:
+    file: ../../assets/houston.webp
+  actions:
+    - text: Example Guide
+      link: /guides/example/
+      icon: right-arrow
+    - text: Read the Starlight docs
+      link: https://starlight.astro.build
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## About This Starter
+
+This is an **internal starter template** for new apps at our organization. It is designed to help you quickly bootstrap modern web applications with a robust, production-ready stack.
+
+### Features & Stack
+
+- **Cloudflare Workers** — Ultra-fast, globally distributed serverless runtime.
+- **Cloudflare D1** — Lightweight, serverless SQL database for persistent storage.
+- **Drizzle ORM** — Type-safe, modern ORM for working with SQL databases.
+- **Better Auth** — Secure, flexible authentication out of the box.
+- **Hono** — Fast, minimal web framework for Cloudflare Workers.
+- **React** — Component-based UI library for building interactive interfaces.
+- **Tailwindcss** - Utility-first CSS framework for rapid UI development. 
+- **shadcn/ui** - Tailwindcss components and utilities for building beautiful UIs.
+- **Vite** — Lightning-fast build tool and development server.
+- **TanStack Router** — Type-safe, flexible routing for React apps.
+- **TanStack Query** — Powerful data fetching and caching for React.
+- **Zod** - Type-safe schema validation for TypeScript.
+- **Storybook** — Isolated UI component development and documentation.
+
+This template is intended for internal use and comes pre-configured with best practices for rapid development and deployment.
+
+## Next steps
+
+<CardGrid stagger>
+  <Card title="Update content" icon="pencil">
+    Edit `src/content/docs/index.mdx` to see this page change.
+  </Card>
+  <Card title="Add new content" icon="add-document">
+    Add Markdown or MDX files to `src/content/docs` to create new pages.
+  </Card>
+  <Card title="Configure your site" icon="setting">
+    Edit your `sidebar` and other config in `astro.config.mjs`.
+  </Card>
+  <Card title="Read the docs" icon="open-book">
+    Learn more in [the Starlight Docs](https://starlight.astro.build/).
+  </Card>
+</CardGrid>

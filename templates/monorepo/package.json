@@ -1,0 +1,29 @@
+{
+  "name": "uprompt-mono",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently --names \"API,WEB\" --prefix-colors \"cyan.bold,green.bold\" \"pnpm webapi:dev\" \"pnpm webapp:dev\"",
+    "webapi:dev": "pnpm --filter webapi dev",
+    "webapp:dev": "pnpm --filter webapp dev",
+    "webapp:build": "pnpm --filter webapp build",
+    "docs:dev" : "pnpm --filter docs dev",
+    "cf:typegen": "cd ./apps/webapi && pnpx wrangler types --env-interface CloudflareBindings",
+    "db:generate": "cd ./apps/webapi && pnpx @better-auth/cli@latest generate --config ./src/lib/auth-generate.ts --output ./src/lib/auth-schema.ts && npx drizzle-kit generate",
+    "db:migrate:local": "cd ./apps/webapi && pnpx wrangler d1 migrations apply uprompt-mono-db",
+    "db:migrate:remote": "cd ./apps/webapi && pnpx wrangler d1 migrations apply uprompt-mono-db --remote",
+    "cf:secret:put" : "cd ./apps/webapi && pnpx wrangler secret bulk .dev.vars",
+    "cf:deploy": "pnpm --filter webapp build && cd ./apps/webapi && pnpx wrangler deploy --minify",
+    "storybook": "cd ./apps/storybook && pnpm storybook",
+    "env:get": "cd ./apps/webapi && [ -f .dev.vars ] && cp .dev.vars .dev.vars.old; rm -f .dev.vars && wormhole receive",
+    "env:send": "cd ./apps/webapi && wormhole send .dev.vars"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.11.0",
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}
