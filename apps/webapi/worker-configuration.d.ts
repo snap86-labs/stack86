@@ -5,7 +5,7 @@ declare namespace Cloudflare {
 	interface Env {
 		ENVIRONMENT: string;
 		VITE_URL: string;
-		WORKER_URL: string;
+		MINIFLARE_URL: string;
 		BETTER_AUTH_SECRET: string;
 		CLOUDFLARE_ACCOUNT_ID: string;
 		CLOUDFLARE_DATABASE_ID: string;

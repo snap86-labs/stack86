@@ -1,0 +1,21 @@
+---
+title: Environment Variables
+description: Setting up enviroment variable for local development and deploying to cloudflare
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { Code } from '@astrojs/starlight/components';
+import envFile from '@templates/webapi/.dev.vars.example?raw';
+
+## Required Environment Variables
+
+### Local Development
+
+To run the application locally, make a copy of the `dev.vars.example` to `.dev.vars` and fill in the required variables:
+
+<Code code={envFile} lang="dotenv" title=".dev.vars" /> 
+
+
+
+
+

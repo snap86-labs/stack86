@@ -12,7 +12,7 @@ export const auth = (env: CloudflareBindings): ReturnType<typeof betterAuth> => 
       provider: 'sqlite',
       schema: schema
     }),
-    baseURL: env.WORKER_URL,
+    baseURL: env.MINIFLARE_URL,
     secret: env.BETTER_AUTH_SECRET,
     socialProviders: {
       google: {

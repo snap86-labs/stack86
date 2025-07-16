@@ -1,30 +1,26 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-
 import cloudflare from "@astrojs/cloudflare";
-import starlightThemeNova from "starlight-theme-nova";
+
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
     starlight({
-      title: "My Docs",
-      plugins: [starlightThemeNova()],
+      title: "stack86",
+      plugins: [],
       social: [
         {
           icon: "github",
           label: "GitHub",
-          href: "https://github.com/withastro/starlight",
+          href: "https://github.com/snap86-labs/stack86",
         },
       ],
       sidebar: [
         {
-          label: "Guides",
-          items: [
-            // Each item here is one entry in the navigation menu.
-            { label: "Example Guide", slug: "guides/example" },
-          ],
+          label: "Getting Started",
+          autogenerate: { directory: "getting-started" },
         },
         {
           label: "Reference",
