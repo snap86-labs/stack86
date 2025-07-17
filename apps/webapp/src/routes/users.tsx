@@ -2,6 +2,7 @@ import axios from 'redaxios'
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import { queryOptions } from '@tanstack/react-query'
 
+
 export const Route = createFileRoute('/users')({
   beforeLoad: async ({ context, location }) => {
     const session = await context.authContext.authClient.getSession()
