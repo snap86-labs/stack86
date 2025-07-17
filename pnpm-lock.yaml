@@ -143,6 +143,9 @@ importers:
       better-auth:
         specifier: ^1.2.12
         version: 1.2.12
+      hono:
+        specifier: ^4.8.4
+        version: 4.8.4
       react:
         specifier: ^19.1.0
         version: 19.1.0

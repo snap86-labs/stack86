@@ -9,7 +9,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@stack86/ui/*": ["../../packages/ui/src/*"]
+      "@stack86/ui/*": ["../../packages/ui/src/*"],
+      "@stack86/webapi/*": ["../webapi/src/*"],
     },
 
     /* Bundler mode */

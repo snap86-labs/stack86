@@ -1,6 +1,6 @@
-import axios from 'redaxios'
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import { queryOptions } from '@tanstack/react-query'
+import { honoClient } from '../lib/hono';
 
 
 export const Route = createFileRoute('/users')({
@@ -27,16 +27,10 @@ function RouteComponent() {
 
 export const fetchUsers = async () => {
   console.info('Fetching users...')
-  return axios
-    .get('/api/users')
-    .then((response) => {
-      console.info('Fetched users:', response.data)
-      return response.data
-    })
-    .catch((error) => {
-      console.error('Error fetching user:', error)
-      throw error
-    })
+  // Assuming honoClient has a users endpoint, e.g. honoClient.users.get()
+  // Replace 'users' with the actual endpoint if different
+  const response = await honoClient.users.$get();
+  return response;
 }
 
 const userQueryOptions = 

@@ -29,7 +29,7 @@ declare module '@tanstack/react-router' {
 
 function InnerApp() {
   const authContext = useAuth()
-  return <RouterProvider router={router} context={{ queryClient, authContext }} />
+  return <RouterProvider router={router} context={{ queryClient, authContext}} />
 }
 
 const rootElement = document.getElementById('root')!
