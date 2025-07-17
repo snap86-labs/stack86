@@ -5,7 +5,7 @@ import { createContext, useContext, type ReactNode } from "react";
 export const authClient = createAuthClient({
   plugins: [
     oneTapClient({
-      clientId: "722004072582-7rbnamfkm2ojb9v4dnol8ieq9dhoochb.apps.googleusercontent.com",
+      clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
       autoSelect: false,
       cancelOnTapOutside: true,
       context: "signin",

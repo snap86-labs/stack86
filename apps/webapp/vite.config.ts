@@ -14,10 +14,14 @@ export default defineConfig({
     outDir: resolve(__dirname, '../webapi/dist'),
     emptyOutDir: true
   },
-  server: {
+server: {
     proxy: {
-      '/api': 'http://localhost:8787',
-      }
-    }
+      '/api': {
+        target: 'http://localhost:8787', // Change to your backend port
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
   }
 )

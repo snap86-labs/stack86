@@ -29,7 +29,7 @@ export const fetchUsers = async () => {
   console.info('Fetching users...')
   // Assuming honoClient has a users endpoint, e.g. honoClient.users.get()
   // Replace 'users' with the actual endpoint if different
-  const response = await honoClient.users.$get();
+  const response = await honoClient.api.users.$get();
   return response;
 }
 

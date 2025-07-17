@@ -2,7 +2,7 @@ import { drizzle } from 'drizzle-orm/d1';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { betterAuth } from 'better-auth';
 import * as schema from './auth-schema';
-import { oneTap } from 'better-auth/plugins';
+import { oneTap, openAPI } from 'better-auth/plugins';
 
 export const auth = (env: CloudflareBindings): ReturnType<typeof betterAuth> => {
   const db = drizzle(env.DB);
@@ -24,7 +24,8 @@ export const auth = (env: CloudflareBindings): ReturnType<typeof betterAuth> => 
       env.VITE_URL,
     ],
     plugins: [
-      oneTap()
+      oneTap(),
+      openAPI(), 
     ]
   });
 };
