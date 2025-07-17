@@ -19,7 +19,15 @@ export const authClient = createAuthClient({
 });
 
 export interface AppAuthContext {
-  authClient: ReturnType<typeof createAuthClient>;
+  authClient: ReturnType<typeof createAuthClient> &  {
+  oneTap: (options?: {
+    fetchOptions?: {
+      onSuccess?: () => void;
+    };
+    callbackURL?: string;
+    onPromptNotification?: (notification: any) => void;
+  }) => Promise<void>;
+};
 }
 
 const AuthContext = createContext<AppAuthContext | null>(null)

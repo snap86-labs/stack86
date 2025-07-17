@@ -6,7 +6,7 @@ export const Route = createFileRoute('/_authenticated')({
     const { authClient } = useAuth()
     const session = authClient.getSession()
     if (!session) {
-      authClient.oneTap()
+      authClient.oneTap?.()
     }
 
     return <Outlet />

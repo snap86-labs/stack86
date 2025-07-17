@@ -11,7 +11,7 @@ export default defineConfig({
       autoCodeSplitting: true,
     }),react(),tailwindcss()],
   build: {
-    outDir: resolve(__dirname, '../webapi/.dist'),
+    outDir: resolve(__dirname, '../webapi/dist'),
     emptyOutDir: true
   },
   server: {
