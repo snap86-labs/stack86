@@ -11,7 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UsersRouteImport } from './routes/users'
 import { Route as AboutRouteImport } from './routes/about'
-import { Route as PathlessLayoutRouteImport } from './routes/_pathlessLayout'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 
 const UsersRoute = UsersRouteImport.update({
@@ -24,8 +24,8 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PathlessLayoutRoute = PathlessLayoutRouteImport.update({
-  id: '/_pathlessLayout',
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -47,7 +47,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/_pathlessLayout': typeof PathlessLayoutRoute
+  '/_authenticated': typeof AuthenticatedRoute
   '/about': typeof AboutRoute
   '/users': typeof UsersRoute
 }
@@ -56,12 +56,12 @@ export interface FileRouteTypes {
   fullPaths: '/' | '/about' | '/users'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/about' | '/users'
-  id: '__root__' | '/' | '/_pathlessLayout' | '/about' | '/users'
+  id: '__root__' | '/' | '/_authenticated' | '/about' | '/users'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  PathlessLayoutRoute: typeof PathlessLayoutRoute
+  AuthenticatedRoute: typeof AuthenticatedRoute
   AboutRoute: typeof AboutRoute
   UsersRoute: typeof UsersRoute
 }
@@ -82,11 +82,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_pathlessLayout': {
-      id: '/_pathlessLayout'
+    '/_authenticated': {
+      id: '/_authenticated'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof PathlessLayoutRouteImport
+      preLoaderRoute: typeof AuthenticatedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -101,7 +101,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  PathlessLayoutRoute: PathlessLayoutRoute,
+  AuthenticatedRoute: AuthenticatedRoute,
   AboutRoute: AboutRoute,
   UsersRoute: UsersRoute,
 }
