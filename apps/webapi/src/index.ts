@@ -4,6 +4,8 @@ import { auth } from './lib/auth'
 import { cors } from 'hono/cors'
 import type { betterAuth } from 'better-auth'
 import users from './routes/users'
+import authRoutes from './routes/auth'
+import { showRoutes } from 'hono/dev'
 
 type AuthInstance = ReturnType<typeof betterAuth>
 
@@ -38,6 +40,12 @@ const app = new Hono<{
     })(c, next)
   )
   .route('/users', users)
+  .route('/auth/*', authRoutes)
+
+  showRoutes(app, {
+    verbose: true,
+  })
 
 export type AppType = typeof app // ✅ Export for client
 export default app
+
