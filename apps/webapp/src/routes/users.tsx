@@ -8,7 +8,10 @@ export const Route = createFileRoute('/users')({
     console.info('Session:', session);
     if (!session.data) {
       console.info('Redirecting to login from /users route');
-      context.authContext.authClient.oneTap?.()
+      context.authContext.authClient.signIn.social({
+        provider: "google",
+        callbackURL: location.href
+      })
     }
   },
   loader: ({ context: { queryClient } }) =>
