@@ -1,12 +1,9 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import { zodValidator } from '@tanstack/zod-adapter'
 import googleLogo from '../assets/google.svg'
-import { authClient} from '../lib/auth'
-import {z} from 'zod'
+import { authClient} from '../lib/auth-client'
+import {redirectSearchSchema} from '@stack86/shared/schema'
 
-const redirectSearchSchema = z.object({
-  redirect: z.string().optional(),
-})
 
 export const Route = createFileRoute('/login')({
   validateSearch: zodValidator(redirectSearchSchema),

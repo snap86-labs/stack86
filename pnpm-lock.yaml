@@ -97,6 +97,9 @@ importers:
 
   apps/webapi:
     dependencies:
+      '@stack86/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       better-auth:
         specifier: ^1.2.12
         version: 1.2.12
@@ -119,6 +122,9 @@ importers:
 
   apps/webapp:
     dependencies:
+      '@stack86/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       '@stack86/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -236,6 +242,12 @@ importers:
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
+
+  packages/shared:
+    dependencies:
+      zod:
+        specifier: ^4.0.5
+        version: 4.0.5
 
   packages/ui:
     dependencies:
@@ -5748,6 +5760,9 @@ packages:
 
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
+
+  zod@4.0.5:
+    resolution: {integrity: sha512-/5UuuRPStvHXu7RS+gmvRf4NXrNxpSllGwDnCBcJZtQsKrviYXm54yDGV2KYNLT5kq0lHGcl7lqWJLgSaG+tgA==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -11787,5 +11802,7 @@ snapshots:
   zod@3.22.3: {}
 
   zod@3.25.76: {}
+
+  zod@4.0.5: {}
 
   zwitch@2.0.4: {}
