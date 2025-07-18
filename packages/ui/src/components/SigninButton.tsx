@@ -1,10 +1,12 @@
-import { GoogleIcon } from "../assets/icons";
+import GoogleIcon from "../assets/icons.svg"
 import { Button } from "./base/button"
 
-
+9
 export const SigninButton = () => {
-  return <Button variant="outline">
-    <GoogleIcon />
-    Sign in with Google
-  </Button>;
+  return (
+    <Button variant="outline">
+      <img src={GoogleIcon} alt="Google" className="w-4 h-4" />
+      Sign in with Google
+    </Button>
+  );
 };
