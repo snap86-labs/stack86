@@ -1,4 +1,4 @@
-import GoogleIcon from "../assets/icons.svg"
+import GoogleIcon from "../assets/google.svg"
 import { Button } from "./base/button"
 
 9
