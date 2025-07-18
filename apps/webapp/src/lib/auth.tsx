@@ -1,6 +1,5 @@
 import { oneTapClient } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
-import { createContext, useContext, type ReactNode } from "react";
 
 export const authClient = createAuthClient({
   plugins: [
@@ -17,33 +16,3 @@ export const authClient = createAuthClient({
     })
   ]
 });
-
-export interface AppAuthContext {
-  authClient: ReturnType<typeof createAuthClient> &  {
-  oneTap: (options?: {
-    fetchOptions?: {
-      onSuccess?: () => void;
-    };
-    callbackURL?: string;
-    onPromptNotification?: (notification: any) => void;
-  }) => Promise<void>;
-};
-}
-
-const AuthContext = createContext<AppAuthContext | null>(null)
-
-export function AuthProvider({ children }: { children: ReactNode }) {
-  return (
-    <AuthContext.Provider value={{ authClient }}>
-      {children}
-    </AuthContext.Provider>
-  )
-}
-
-export function useAuth() {
-  const context = useContext(AuthContext)
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider')
-  }
-  return context
-}

@@ -1,7 +1,7 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import { zodValidator } from '@tanstack/zod-adapter'
 import googleLogo from '../assets/google.svg'
-import { useAuth } from '../lib/auth'
+import { authClient} from '../lib/auth'
 import {z} from 'zod'
 
 const redirectSearchSchema = z.object({
@@ -10,8 +10,8 @@ const redirectSearchSchema = z.object({
 
 export const Route = createFileRoute('/login')({
   validateSearch: zodValidator(redirectSearchSchema),
-  beforeLoad: async ({ context, location }) => {
-    const session = await context.authContext.authClient.getSession()
+  beforeLoad: async () => {
+    const session = await authClient.getSession()
     if (session.data) {
       console.info('Redirecting to home from /login route');
       throw redirect({ to: '/' })
@@ -21,11 +21,10 @@ export const Route = createFileRoute('/login')({
 })
 
 function LoginRoute() {
-  const auth = useAuth()
   const {redirect} = Route.useSearch()
 
   const handleGoogleLogin = () => {
-    auth.authClient.signIn.social({
+    authClient.signIn.social({
       provider: 'google',
       callbackURL:  window.location.origin + (redirect ? redirect : '/'),
     })
