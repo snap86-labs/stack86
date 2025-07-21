@@ -1,0 +1,113 @@
+---
+title: Let's Fucking Go!
+description: Get up and running in no time.
+---
+
+import { Code } from '@astrojs/starlight/components';
+import envFile from '@templates/webapi/.dev.vars.example?raw';
+
+export const snippet_init = "pnpm create stack86@latest"
+export const snippet_generate_secret = "openssl rand -hex 32"
+export const snippet_create_d1 = "pnpx wrangler@latest d1 create <your_database_name>"
+export const snippet_create_d1_output = `✅ Successfully created DB '<your_database_name>' in region <your_region>
+Created your new D1 database.
+
+{
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "prod-d1-tutorial",
+      "database_id": "<unique-ID-for-your-database>"
+    }
+  ]
+}
+`
+
+## Initiate a Project
+
+Create your new Stack86 monorepo:
+
+<Code code={snippet_init} lang="sh" frame="terminal" />
+
+---
+
+## Set Up Environment Variables
+
+You’ll need the following:
+
+- Cloudflare D1 database
+- Cloudflare API Token
+- Google OAuth Credentials
+- Random secret (used for session or token signing)
+
+---
+
+### Create a Cloudflare D1 Database
+
+Run the following command:
+
+<Code code={snippet_create_d1} lang="sh" frame="terminal" />
+
+Expected output:
+
+<Code code={snippet_create_d1_output} lang="sh" frame="terminal" />
+
+Copy the `binding`, `database_name`, and `database_id` into your `wrangler.jsonc`.
+
+---
+
+### Create a Cloudflare API Token
+
+1. Visit [Cloudflare API Tokens](https://dash.cloudflare.com/profile/api-tokens)
+2. Click **Create Token**
+3. Use the **Edit Cloudflare Workers** template, and under **Permissions**, add:
+
+   - **D1 - Edit**
+   - **Account - Read**
+
+4. Save the token and add it to your environment file:
+
+```dotenv
+CLOUDFLARE_API_TOKEN=your_token_here
+```
+
+---
+
+### Generate `BETTER_AUTH_SECRET`
+
+Use OpenSSL to generate a secure secret:
+
+<Code code={snippet_generate_secret} lang="sh" frame="terminal" />
+
+Then add it to your environment file:
+
+```dotenv
+BETTER_AUTH_SECRET=your_generated_secret_here
+```
+
+---
+
+### Set Up Google OAuth
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create or select a project
+3. Navigate to **APIs & Services > Credentials**
+4. Click **+ Create Credentials > OAuth 2.0 Client ID**
+5. Set the **Authorized redirect URI** to:
+
+```
+http://localhost:8787/api/oauth/google/callback
+```
+
+6. Save the **Client ID** and **Client Secret**, then add to `.env`:
+
+```dotenv
+GOOGLE_CLIENT_ID=your_client_id_here
+GOOGLE_CLIENT_SECRET=your_client_secret_here
+```
+
+---
+
+## Example `.env` File
+
+<Code code={envFile} lang="diff" title=".dev.vars.example" />

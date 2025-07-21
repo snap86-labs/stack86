@@ -96,6 +96,7 @@ export const Disabled: Story = {
   args: {
     disabled: true,
     children: 'Disabled Button',
+    className: 'bg-red-900', 
     'aria-label': 'Disabled Icon Button',
   },
 };

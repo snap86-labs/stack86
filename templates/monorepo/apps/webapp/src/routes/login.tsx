@@ -1,0 +1,47 @@
+import { createFileRoute, redirect } from '@tanstack/react-router'
+import { zodValidator } from '@tanstack/zod-adapter'
+import googleLogo from '../assets/google.svg'
+import { authClient} from '../lib/auth-client'
+import {redirectSearchSchema} from '@stack86/shared/schema'
+
+
+export const Route = createFileRoute('/login')({
+  validateSearch: zodValidator(redirectSearchSchema),
+  beforeLoad: async () => {
+    const session = await authClient.getSession()
+    if (session.data) {
+      console.info('Redirecting to home from /login route');
+      throw redirect({ to: '/' })
+    }
+  },
+  component: LoginRoute,
+})
+
+function LoginRoute() {
+  const {redirect} = Route.useSearch()
+
+  const handleGoogleLogin = () => {
+    authClient.signIn.social({
+      provider: 'google',
+      callbackURL:  window.location.origin + (redirect ? redirect : '/'),
+    })
+    console.log('Google login clicked')
+  }
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+      <div className="bg-white shadow-2xl rounded-xl p-8 max-w-sm w-full">
+        <h1 className="text-2xl font-semibold text-center text-gray-800 mb-6">
+          Login to SHACN
+        </h1>
+        <button
+          onClick={handleGoogleLogin}
+          className="flex items-center justify-center gap-3 w-full px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm hover:shadow-md transition"
+        >
+          <img src={googleLogo} alt="Google" className="w-5 h-5" />
+          <span className="text-gray-700 font-medium">Continue with Google</span>
+        </button>
+      </div>
+    </div>
+  )
+}

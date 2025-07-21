@@ -1,12 +1,14 @@
 {
   "name": "webapi",
   "type": "module",
+  "main" : "index.js",
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings"
   },
   "dependencies": {
+    "@stack86/shared": "workspace:*",
     "better-auth": "^1.2.12",
     "drizzle-kit": "^0.31.4",
     "drizzle-orm": "^0.44.2",

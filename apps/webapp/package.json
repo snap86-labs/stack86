@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@stack86/ui": "workspace:*",
     "@stack86/shared": "workspace:*",
+    "@stack86/ui": "workspace:*",
     "@tailwindcss/vite": "^4.1.11",
     "@tanstack/react-query": "^5.83.0",
     "@tanstack/react-query-devtools": "^5.83.0",
@@ -24,6 +24,7 @@
     "react-dom": "^19.1.0",
     "redaxios": "^0.5.1",
     "tailwindcss": "^4.1.11",
+    "vite-tsconfig-paths": "^5.1.4",
     "zod": "^3.25.76"
   },
   "devDependencies": {

@@ -6,6 +6,7 @@ import {
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import type { QueryClient } from '@tanstack/react-query'
+import {ModeToggle} from '@stack86/ui/components/mode-toggle'
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
@@ -53,6 +54,7 @@ function RootComponent() {
         >
           This Route Does Not Exist
         </Link>
+        <ModeToggle/>
       </div>
       <hr />
       <Outlet />
