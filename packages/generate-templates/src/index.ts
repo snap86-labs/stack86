@@ -170,6 +170,11 @@ const packages: Package[] = [
     destDir: path.join(baseDest, "packages/ui"),
     excludeDir: ["node_modules", "android", "ios", "build"]
   }),
+    new Package({
+    srcDir: path.join(baseSrc, "packages/shared"),
+    destDir: path.join(baseDest, "packages/shared"),
+    excludeDir: ["node_modules", "android", "ios", "build"]
+  }),
 ];
 
 console.log(chalk.bold.blue("\n🚀 Starting template generation...\n"));
